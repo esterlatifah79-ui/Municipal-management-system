@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    char name[50];
+    float value;
+} Asset;
+
+int main() {
+    Asset a[3];
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        printf("Enter asset ID: ");
+        scanf("%d", &a[i].id);
+
+        printf("Enter asset name: ");
+        scanf(" %49[^\n]", a[i].name);
+
+        printf("Enter asset value: ");
+        scanf("%f", &a[i].value);
+    }
+
+    printf("\nMUNICIPAL ASSET REGISTER\n");
+
+    for (i = 0; i < 3; i++) {
+        printf("%d %s NAD %.2f\n",
+               a[i].id, a[i].name, a[i].value);
+    }
+
+    return 0;
+}

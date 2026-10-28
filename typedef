@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    char name[50];
+    float salary;
+} Employee;
+
+int main() {
+    Employee e = {101, "Anna", 15000};
+
+    printf("%s earns %.2f\n", e.name, e.salary);
+
+    return 0;
+}

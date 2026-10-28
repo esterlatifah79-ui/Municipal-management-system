@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    float salary;
+} Employee;
+
+int main() {
+    Employee e[2] = {{101, 15000}, {102, 18000}};
+    Employee data[2];
+    FILE *file;
+
+    file = fopen("employees.bin", "wb");
+
+    if (file == NULL)
+        return 1;
+
+    fwrite(e, sizeof(Employee), 2, file);
+    fclose(file);
+
+    file = fopen("employees.bin", "rb");
+
+    if (file == NULL)
+        return 1;
+
+    fread(data, sizeof(Employee), 2, file);
+    fclose(file);
+
+    printf("%d %.2f\n", data[0].id, data[0].salary);
+    printf("%d %.2f\n", data[1].id, data[1].salary);
+
+    return 0;
+}

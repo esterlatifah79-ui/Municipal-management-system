@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    char name[50];
+    float salary;
+} Employee;
+
+int main() {
+    Employee e[3] = {
+        {101, "Anna", 15000},
+        {102, "Peter", 18000},
+        {103, "John", 20000}
+    };
+
+    int i;
+
+    for (i = 0; i < 3; i++) {
+        printf("%d %s %.2f\n", e[i].id, e[i].name, e[i].salary);
+    }
+
+    return 0;
+}

@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+typedef struct {
+    int day, month, year;
+} Date;
+
+typedef struct {
+    int id;
+    char name[50];
+    Date hired;
+} Employee;
+
+int main() {
+    Employee e = {101, "Anna", {10, 5, 2024}};
+
+    printf("Name: %s\n", e.name);
+    printf("Year hired: %d\n", e.hired.year);
+
+    return 0;
+}

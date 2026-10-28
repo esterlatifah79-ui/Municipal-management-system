@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+struct Employee {
+    int id;
+    char name[50];
+    float salary;
+};
+
+int main() {
+    struct Employee e = {101, "Anna", 15000};
+
+    printf("ID: %d\n", e.id);
+    printf("Name: %s\n", e.name);
+    printf("Salary: %.2f\n", e.salary);
+
+    e.salary = 18000;
+
+    printf("New Salary: %.2f\n", e.salary);
+
+    return 0;
+}
