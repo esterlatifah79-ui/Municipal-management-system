@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int id;
+    char name[50];
+    float salary;
+} Employee;
+
+int main() {
+    Employee *e;
+    Employee *temp;
+    int count = 0, capacity = 2;
+    int choice, i, id, found;
+
+    e = calloc(capacity, sizeof(Employee));
+
+    if (e == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    do {
+        printf("\n1. Add Employee\n");
+        printf("2. Display Employees\n");
+        printf("3. Remove Employee\n");
+        printf("4. Shrink to Fit\n");
+        printf("5. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        if (choice == 1) {
+            if (count == capacity) {
+                capacity *= 2;
+                temp = realloc(e, capacity * sizeof(Employee));
+
+                if (temp == NULL) {
+                    printf("Memory allocation failed!\n");
+                    continue;
+                }
+
+                e = temp;
+            }
+
+            printf("Enter ID: ");
+            scanf("%d", &e[count].id);
+
+            printf("Enter Name: ");
+            scanf(" %49[^\n]", e[count].name);
+
+            printf("Enter Salary: ");
+            scanf("%f", &e[count].salary);
+
+            count++;
+        }
+
+        else if (choice == 2) {
+            for (i = 0; i < count; i++) {
+                printf("%d %s %.2f\n",
+                       e[i].id, e[i].name, e[i].salary);
+            }
+        }
+
+        else if (choice == 3) {
+            printf("Enter employee ID to remove: ");
+            scanf("%d", &id);
+
+            found = -1;
+
+            for (i = 0; i < count; i++) {
+                if (e[i].id == id) {
+                    found = i;
+                    break;
+                }
+            }
+
+            if (found != -1) {
+                for (i = found; i < count - 1; i++) {
+                    e[i] = e[i + 1];
+                }
+
+                count--;
+                printf("Employee removed.\n");
+            } else {
+                printf("Employee not found.\n");
+            }
+        }
+
+        else if (choice == 4) {
+            if (count == 0) {
+                free(e);
+                e = NULL;
+                capacity = 0;
+                printf("Array shrunk to zero.\n");
+            } else {
+                temp = realloc(e, count * sizeof(Employee));
+
+                if (temp != NULL) {
+                    e = temp;
+                    capacity = count;
+                    printf("Array shrunk successfully.\n");
+                } else {
+                    printf("Shrinking failed.\n");
+                }
+            }
+        }
+
+        else if (choice != 5) {
+            printf("Invalid choice.\n");
+        }
+
+    } while (choice != 5);
+
+    free(e);
+
+    printf("Memory released. Goodbye!\n");
+
+    return 0;
+}
