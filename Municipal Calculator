@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    float basicSalary, allowance, deduction, grossSalary, netSalary;
+
+    printf("Enter Basic Salary: ");
+    scanf("%f", &basicSalary);
+
+    printf("Enter Allowance: ");
+    scanf("%f", &allowance);
+
+    printf("Enter Deduction: ");
+    scanf("%f", &deduction);
+
+    grossSalary = basicSalary + allowance;
+    netSalary = grossSalary - deduction;
+
+    printf("\nGross Salary: NAD %.2f\n", grossSalary);
+    printf("Net Salary: NAD %.2f\n", netSalary);
+
+    if (netSalary >= 20000) {
+        printf("High Income\n");
+    } else {
+        printf("Standard Income\n");
+    }
+
+    return 0;
+}
