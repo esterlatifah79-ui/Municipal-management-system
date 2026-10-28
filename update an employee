@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    float salary;
+} Employee;
+
+void updateSalary(Employee *e) {
+    e->salary = 25000;
+}
+
+int main() {
+    Employee e = {101, 15000};
+
+    updateSalary(&e);
+
+    printf("New salary: %.2f\n", e.salary);
+
+    return 0;
+}
